@@ -1,7 +1,12 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Main {
-    private static final int MAX = 2000;
+    private static final int MAX = 700;
+    private static final int MAX_LENGTH = getNumberOfDigits(MAX);
     private static final int MAX_IN_LINE = 20;
+    private static final boolean WRITE_TO_FILE = false;
 
     private static int getNumberOfDigits(int n) {
         int nd = 0;
@@ -12,21 +17,35 @@ public class Main {
         return nd;
     }
 
-    public static void main(String[] args) {
-        System.out.println(getNumberOfDigits(1982736));
+    private static String getFormatedNumbers() {
+        String out = "";
         for (int i = 1; i <= MAX; i++) {
-            if (i < 10) {
-                System.out.print("  ");
-            } else if (i < 100) {
-                System.out.print(" ");
+            int nd = getNumberOfDigits(i);
+            for (int j = 0; j < MAX_LENGTH - nd; j++) {
+                out += " ";
             }
-            System.out.print(i);
+            out += Integer.toString(i);
             if (i < MAX) {
-                System.out.print(", ");
+                out += ", ";
             }
             if (i % MAX_IN_LINE == 0) {
-                System.out.print("\n");
+                out += "\n";
             }
+        }
+        return out;
+    }
+
+    public static void main(String[] args) {
+        String out=getFormatedNumbers();
+        if (WRITE_TO_FILE) {
+            String fName = "output/integers.txt";
+            try (FileWriter fr = new FileWriter(fName)) {
+                fr.write(out);
+            } catch (IOException ex) {
+                System.out.println("Can't create file: " + fName);
+            }
+        } else {
+            System.out.println(out);
         }
     }
 }
