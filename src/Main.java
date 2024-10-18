@@ -1,10 +1,12 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Main {
     private static final int MAX = 700;
-    private static final int MAX_LENGTH = getNumberOfDigits(MAX);
     private static final int MAX_IN_LINE = 20;
     private static final boolean WRITE_TO_FILE = false;
 
@@ -17,18 +19,19 @@ public class Main {
         return nd;
     }
 
-    private static String getFormatedNumbers() {
+    private static String getFormatedNumbers(ArrayList<Integer> numbers) {
         String out = "";
-        for (int i = 1; i <= MAX; i++) {
-            int nd = getNumberOfDigits(i);
-            for (int j = 0; j < MAX_LENGTH - nd; j++) {
+        for (int i = 0; i<numbers.size(); i++) {
+            int nd = getNumberOfDigits(numbers.get(i));
+            int maxLength=getNumberOfDigits(Collections.max(numbers));
+            for (int j = 0; j < maxLength - nd; j++) {
                 out += " ";
             }
-            out += Integer.toString(i);
-            if (i < MAX) {
+            out += Integer.toString(numbers.get(i));
+            if (i < numbers.size()-1) {
                 out += ", ";
             }
-            if (i % MAX_IN_LINE == 0) {
+            if ((i+1) % MAX_IN_LINE == 0) {
                 out += "\n";
             }
         }
@@ -36,7 +39,11 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        String out=getFormatedNumbers();
+        ArrayList<Integer> lst=new ArrayList<>();
+        for (int i = 1; i <= MAX; i++) {
+            lst.add(i*i);
+        }
+        String out=getFormatedNumbers(lst);
         if (WRITE_TO_FILE) {
             String fName = "output/integers.txt";
             try (FileWriter fr = new FileWriter(fName)) {
