@@ -5,16 +5,16 @@ import java.util.Collections;
 
 public class IntegerPrinter {
     private static final int MAX_IN_LINE = 20;
-    private static final boolean WRITE_TO_FILE = false;
+    private static final String OUTPUT_PATH = "output/";
 
     private String fileName;
 
-    public IntegerPrinter(){
-        fileName=null;
+    public IntegerPrinter() {
+        fileName = null;
     }
 
-    public IntegerPrinter(String fileName){
-        this.fileName=fileName;
+    public IntegerPrinter(String fileName) {
+        this.fileName = fileName;
     }
 
     private int getNumberOfDigits(int n) {
@@ -28,26 +28,26 @@ public class IntegerPrinter {
 
     public void print(ArrayList<Integer> numbers) {
         String out = "";
-        for (int i = 0; i<numbers.size(); i++) {
+        for (int i = 0; i < numbers.size(); i++) {
             int nd = getNumberOfDigits(numbers.get(i));
-            int maxLength=getNumberOfDigits(Collections.max(numbers));
+            int maxLength = getNumberOfDigits(Collections.max(numbers));
             for (int j = 0; j < maxLength - nd; j++) {
                 out += " ";
             }
             out += Integer.toString(numbers.get(i));
-            if (i < numbers.size()-1) {
+            if (i < numbers.size() - 1) {
                 out += ", ";
             }
-            if ((i+1) % MAX_IN_LINE == 0) {
+            if ((i + 1) % MAX_IN_LINE == 0) {
                 out += "\n";
             }
         }
-        if (WRITE_TO_FILE) {
-            String fName = "output/integers.txt";
-            try (FileWriter fr = new FileWriter(fName)) {
+        if (fileName != null) {
+            //String fName = "output/integers.txt";
+            try (FileWriter fr = new FileWriter(OUTPUT_PATH + fileName)) {
                 fr.write(out);
             } catch (IOException ex) {
-                System.out.println("Can't create file: " + fName);
+                System.out.println("Can't create file: " + fileName);
             }
         } else {
             System.out.println(out);
