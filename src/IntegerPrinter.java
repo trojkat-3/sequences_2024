@@ -15,6 +15,11 @@ public class IntegerPrinter {
 
     public IntegerPrinter(String fileName) {
         this.fileName = fileName;
+        try (FileWriter fr = new FileWriter(OUTPUT_PATH + fileName)) {
+            fr.write("");
+        } catch (IOException ex) {
+            System.out.println("Can't write to file: " + fileName);
+        }
     }
 
     private int getNumberOfDigits(int n) {
@@ -26,8 +31,8 @@ public class IntegerPrinter {
         return nd;
     }
 
-    public void print(ArrayList<Integer> numbers) {
-        String out = "";
+    public void print(ArrayList<Integer> numbers, String title) {
+        String out = "\n" + title + ":\n";
         for (int i = 0; i < numbers.size(); i++) {
             int nd = getNumberOfDigits(numbers.get(i));
             int maxLength = getNumberOfDigits(Collections.max(numbers));
@@ -38,14 +43,14 @@ public class IntegerPrinter {
             if (i < numbers.size() - 1) {
                 out += ", ";
             }
-            if ((i + 1) % MAX_IN_LINE == 0) {
+            if ((i + 1) % MAX_IN_LINE == 0 && i + 1 != numbers.size()) {
                 out += "\n";
             }
         }
         if (fileName != null) {
             //String fName = "output/integers.txt";
-            try (FileWriter fr = new FileWriter(OUTPUT_PATH + fileName)) {
-                fr.write(out);
+            try (FileWriter fr = new FileWriter(OUTPUT_PATH + fileName, true)) {
+                fr.append(out);
             } catch (IOException ex) {
                 System.out.println("Can't create file: " + fileName);
             }
