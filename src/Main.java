@@ -1,29 +1,12 @@
+import sequences.Sequence;
+
 import java.util.ArrayList;
 
 public class Main {
     private static final int MAX = 10000;
 
-    private static boolean isPrime(int n) {
-        if (n <= 1) {
-            return false;
-        }
-        for (int i = 2; i * i <= n; i++) {
-            if (n % i == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
 
-    private static int fibonacci(int n, ArrayList<Integer> fn) {
-        if (n <= 1) {
-            return n;
-        } else if (fn.size() > n) {
-            return fn.get(n);
-        } else {
-            return fibonacci(n - 1, fn) + fibonacci(n - 2, fn);
-        }
-    }
+
 
     public static void main(String[] args) {
 
