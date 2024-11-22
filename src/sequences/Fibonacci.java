@@ -3,9 +3,17 @@ package sequences;
 import java.util.ArrayList;
 
 public class Fibonacci extends Sequence {
+    private int[] fInit={0,1};
 
     public Fibonacci() {
         super("Fibonacci");
+        initializeSequence();
+    }
+
+    public Fibonacci(int f0, int f1){
+        super("Fibonacci ["+f0+","+f1+"]");
+        fInit[0]=f0;
+        fInit[1]=f1;
         initializeSequence();
     }
 
@@ -19,7 +27,7 @@ public class Fibonacci extends Sequence {
 
     private int fibonacci(int n, ArrayList<Integer> fn) {
         if (n <= 1) {
-            return n;
+            return fInit[n];
         } else if (fn.size() > n) {
             return fn.get(n);
         } else {

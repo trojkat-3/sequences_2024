@@ -1,48 +1,33 @@
-import sequences.Sequence;
+import sequences.*;
 
 import java.util.ArrayList;
 
 public class Main {
-    private static final int MAX = 10000;
-
-
-
-
     public static void main(String[] args) {
-
 
         IntegerPrinter printerStdOut = new IntegerPrinter();
         IntegerPrinter printerFile = new IntegerPrinter("integers.txt");
         //Integers
-        ArrayList<Integer> lst = new ArrayList<>();
-        for (int i = 1; i <= MAX; i++) {
-            lst.add(i);
-        }
-        printerStdOut.print(lst, "Integers");
-        printerFile.print(lst, "Integers");
+        Sequence integers=new Integers();
+        printerStdOut.print(integers);
+        printerFile.print(integers);
         //Squares
-        lst.clear();
-        for (int i = 1; i * i <= MAX; i++) {
-            lst.add(i * i);
-        }
-        printerStdOut.print(lst, "Squares");
-        printerFile.print(lst, "Squares");
+        Sequence squares=new Squares();
+        printerStdOut.print(squares);
+        printerFile.print(squares);
         //Primes
-        lst.clear();
-        for (int i = 1; i <= MAX; i++) {
-            if (isPrime(i)) {
-                lst.add(i);
-            }
-        }
-        printerStdOut.print(lst, "Primes");
-        printerFile.print(lst, "Primes");
+        Sequence primes=new Primes();
+        primes.setMax(10000);
+        printerStdOut.print(primes);
+        printerFile.print(primes);
         //Fibonacci numbers
-        lst.clear();
-        int f;
-        for (int i = 0; (f=fibonacci(i,lst)) <= MAX; i++) {
-            lst.add(f);
-        }
-        printerStdOut.print(lst, "Fibonacci");
-        printerFile.print(lst, "Fibonacci");
+        Sequence fibonacci=new Fibonacci();
+        fibonacci.setMax(100000);
+        printerStdOut.print(fibonacci);
+        printerFile.print(fibonacci);
+        //Fibonacci numbers
+        Sequence fibonacci2=new Fibonacci(1,3);
+        printerStdOut.print(fibonacci2);
+        printerFile.print(fibonacci2);
     }
 }
