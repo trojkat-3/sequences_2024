@@ -9,32 +9,42 @@ public class Main {
         IntegerPrinter printerStdOut = new IntegerPrinter();
         IntegerPrinter printerFile = new IntegerPrinter("integers.txt");
         //Integers
-        Sequence integers=new Integers();
+        Sequence integers = new Integers();
         printerStdOut.print(integers);
         printerFile.print(integers);
         //Squares
-        Sequence squares=new Squares();
+        Sequence squares = new Squares();
         printerStdOut.print(squares);
         printerFile.print(squares);
         //Primes
-        Sequence primes=new Primes();
+        Sequence primes = new Primes();
         primes.setMax(10000);
         printerStdOut.print(primes);
         printerFile.print(primes);
         //Fibonacci numbers
-        Sequence fibonacci=new Fibonacci();
+        Sequence fibonacci = new Fibonacci();
         fibonacci.setMax(100000);
         printerStdOut.print(fibonacci);
         printerFile.print(fibonacci);
         //Fibonacci numbers
-        Sequence fibonacci2=new Fibonacci(1,3);
+        Sequence fibonacci2 = new Fibonacci(1, 3);
         printerStdOut.print(fibonacci2);
         printerFile.print(fibonacci2);
-        //
+        //Arithmetic sequence
+        Sequence arithmetic = new Arithmetic(-7, 3);
+        printerStdOut.print(arithmetic);
+        printerFile.print(arithmetic);
+
         try {
-        System.out.println(fibonacci.getSum(100));
-        } catch (OutOfBoundsException ex){
-            System.out.println("The program is running OK, however: "+ex.getMessage());
+            System.out.println(arithmetic.getSum(5));
+        } catch (OutOfBoundsException ex) {
+            System.out.println("The program is running OK, however: " + ex.getMessage());
+        }
+
+        try {
+            System.out.println(fibonacci.getSum(100));
+        } catch (OutOfBoundsException ex) {
+            System.out.println("The program is running OK, however: " + ex.getMessage());
         }
     }
 }
