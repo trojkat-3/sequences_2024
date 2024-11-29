@@ -1,3 +1,4 @@
+import exceptions.CantDecomposeException;
 import exceptions.OutOfBoundsException;
 import sequences.*;
 
@@ -35,6 +36,13 @@ public class Main {
         printerStdOut.print(arithmetic);
         printerFile.print(arithmetic);
 
+        try {
+            System.out.println(primes.decompose(1234));
+            System.out.println(squares.decompose(1234));
+            System.out.println(primes.decompose(32));
+        } catch (CantDecomposeException e) {
+            System.out.println(e.getMessage());
+        }
         try {
             System.out.println(arithmetic.getSum(5));
         } catch (OutOfBoundsException ex) {
