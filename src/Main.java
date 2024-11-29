@@ -1,3 +1,4 @@
+import exceptions.OutOfBoundsException;
 import sequences.*;
 
 import java.util.ArrayList;
@@ -29,5 +30,11 @@ public class Main {
         Sequence fibonacci2=new Fibonacci(1,3);
         printerStdOut.print(fibonacci2);
         printerFile.print(fibonacci2);
+        //
+        try {
+        System.out.println(fibonacci.getSum(100));
+        } catch (OutOfBoundsException ex){
+            System.out.println("The program is running OK, however: "+ex.getMessage());
+        }
     }
 }

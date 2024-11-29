@@ -35,7 +35,7 @@ public class IntegerPrinter {
 
     public void print(Sequence sq) {
         ArrayList<Integer> numbers=sq.getSequence();
-        String out = "\n" + sq.getName() + ":\n";
+        String out = "\n" + sq.toString() + ":\n";
         for (int i = 0; i < numbers.size(); i++) {
             int nd = getNumberOfDigits(numbers.get(i));
             int maxLength = getNumberOfDigits(Collections.max(numbers));
