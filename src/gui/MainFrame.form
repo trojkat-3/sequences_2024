@@ -52,14 +52,14 @@
                   <text value="Please select sequence:"/>
                 </properties>
               </component>
-              <component id="83521" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+              <component id="16741" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
                 <constraints/>
                 <properties/>
               </component>
-              <component id="9d717" class="javax.swing.JButton" binding="button1" default-binding="true">
+              <component id="9d717" class="javax.swing.JButton" binding="selectButton" default-binding="true">
                 <constraints/>
                 <properties>
-                  <text value="Button"/>
+                  <text value="Select"/>
                 </properties>
               </component>
             </children>
@@ -75,25 +75,26 @@
                   <text value="Change upper limit:"/>
                 </properties>
               </component>
-              <component id="cca8b" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+              <component id="cca8b" class="javax.swing.JTextField" binding="limitTextField">
                 <constraints/>
                 <properties/>
               </component>
-              <component id="d16d5" class="javax.swing.JButton" binding="button2" default-binding="true">
+              <component id="d16d5" class="javax.swing.JButton" binding="changeButton" default-binding="true">
                 <constraints/>
                 <properties>
-                  <text value="Button"/>
+                  <text value="Change"/>
                 </properties>
               </component>
               <component id="46b2e" class="javax.swing.JLabel">
                 <constraints/>
                 <properties>
-                  <text value="Label"/>
+                  <text value="Upper limit:"/>
                 </properties>
               </component>
-              <component id="5ef58" class="javax.swing.JLabel">
+              <component id="5ef58" class="javax.swing.JLabel" binding="limitLabel">
                 <constraints/>
                 <properties>
+                  <font style="1"/>
                   <text value="Label"/>
                 </properties>
               </component>
@@ -101,60 +102,78 @@
           </grid>
         </children>
       </grid>
-      <grid id="ec2a" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="ec2a" binding="centralPanel" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints border-constraint="Center"/>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="60f5d" class="javax.swing.JButton" binding="button3" default-binding="true">
+          <grid id="8dc85" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties>
-              <text value="Button"/>
-            </properties>
-          </component>
-          <component id="487dc" class="javax.swing.JButton" binding="button4" default-binding="true">
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="14a33" class="javax.swing.JButton" binding="showElementsButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Show elements"/>
+                </properties>
+              </component>
+              <component id="c901e" class="javax.swing.JButton" binding="saveToFileButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Save to file"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="d9714" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties>
-              <text value="Button"/>
-            </properties>
-          </component>
-          <component id="82bfc" class="javax.swing.JButton" binding="button5" default-binding="true">
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="b70f9" class="javax.swing.JTextField" binding="decomposeTextField">
+                <constraints/>
+                <properties/>
+              </component>
+              <component id="d866" class="javax.swing.JButton" binding="decomposeButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Decompose"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <vspacer id="2f48e">
             <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties>
-              <text value="Button"/>
-            </properties>
-          </component>
-          <component id="6d7ad" class="javax.swing.JButton" binding="button6" default-binding="true">
+          </vspacer>
+          <grid id="4eeca" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
-            <properties>
-              <text value="Button"/>
-            </properties>
-          </component>
-          <component id="f5552" class="javax.swing.JButton" binding="button7" default-binding="true">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Button"/>
-            </properties>
-          </component>
-          <component id="903e2" class="javax.swing.JButton" binding="button8" default-binding="true">
-            <constraints>
-              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Button"/>
-            </properties>
-          </component>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="fdeaa" class="javax.swing.JTextField" binding="sumTextField">
+                <constraints/>
+                <properties>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="e2487" class="javax.swing.JButton" binding="sumButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Sum"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
         </children>
       </grid>
     </children>

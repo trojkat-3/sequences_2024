@@ -15,6 +15,10 @@ abstract public class Sequence {
         this.name = name;
     }
 
+    public int getMax() {
+        return max;
+    }
+
     public void setMax(int max) {
         this.max = max;
         sequence.clear();
