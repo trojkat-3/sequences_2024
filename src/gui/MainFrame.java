@@ -4,6 +4,7 @@ import sequences.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainFrame extends JFrame {
     private JPanel mainPanel;
@@ -26,6 +27,8 @@ public class MainFrame extends JFrame {
     private JTextField sumTextField;
     private JButton sumButton;
     private JLabel limitLabel;
+    private JLabel changeLabel;
+    private JLabel upperLimitLabale;
 
     private Sequence sequence=null;
 
@@ -36,28 +39,71 @@ public class MainFrame extends JFrame {
         creditsButton.addActionListener(this::creditsAction);
         selectButton.addActionListener(this::selectAction);
         changeButton.addActionListener(this::changeAction);
+        resetButton.addActionListener(this::resetAction);
         init();
+
+    }
+
+    private void lockSequenceChoice(boolean lock){
+        //to lock
+        comboBox1.setEnabled(!lock);
+        selectButton.setEnabled(!lock);
+        //to unlock
+        JComponent[] lst= {
+                resetButton,
+                limitTextField,
+                changeButton,
+                showElementsButton,
+                saveToFileButton,
+                decomposeButton,
+                sumButton,
+                decomposeTextField,
+                sumTextField,
+                changeLabel,
+                upperLimitLabale,
+                limitLabel
+        };
+        for (JComponent cmp:lst){
+            cmp.setEnabled(lock);
+        }
+        if (lock){
+            limitLabel.setText(Integer.toString(sequence.getMax()));
+        }else {
+            limitLabel.setText("---");
+        }
     }
 
     private void init(){
-        Sequence[] sq={new Primes(),new Squares(), new Fibonacci(), new Integers(),
+        Sequence[] sq={new Primes(), new Squares(), new Fibonacci(), new Integers(),
         new Arithmetic(1,3)};
         comboBox1.setModel(new DefaultComboBoxModel<Sequence>(sq));
-        limitLabel.setText("---");
+        lockSequenceChoice(false);
         limitTextField.setColumns(6);
         decomposeTextField.setColumns(8);
         sumTextField.setColumns(8);
     }
 
+    private void resetAction(ActionEvent e){
+        sequence=null;
+        lockSequenceChoice(false);
+    }
+
     private void changeAction(ActionEvent e){
-        int limit= Integer.parseInt(limitTextField.getText());
-        sequence.setMax(limit);
-        limitLabel.setText(Integer.toString(sequence.getMax()));
+        try {
+            int limit = Integer.parseInt(limitTextField.getText());
+            sequence.setMax(limit);
+        } catch (NumberFormatException ex){
+            showError("Invalid number!");
+        }
+        limitTextField.setText("");
+        lockSequenceChoice(true);
+
+        //limitLabel.setText(Integer.toString(sequence.getMax()));
     }
 
     private void selectAction(ActionEvent e){
         sequence= (Sequence) comboBox1.getSelectedItem();
-        limitLabel.setText(Integer.toString(sequence.getMax()));
+        lockSequenceChoice(true);
     }
 
     private void exitAction(ActionEvent e){
@@ -68,5 +114,10 @@ public class MainFrame extends JFrame {
         JOptionPane.showMessageDialog(this,
                 "Developed by MS" , "Credits",
                 JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void showError(String msg){
+        JOptionPane.showMessageDialog(this,
+                msg,"Error", JOptionPane.ERROR_MESSAGE);
     }
 }

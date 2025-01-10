@@ -69,7 +69,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="5ae12" class="javax.swing.JLabel">
+              <component id="5ae12" class="javax.swing.JLabel" binding="changeLabel">
                 <constraints/>
                 <properties>
                   <text value="Change upper limit:"/>
@@ -85,7 +85,7 @@
                   <text value="Change"/>
                 </properties>
               </component>
-              <component id="46b2e" class="javax.swing.JLabel">
+              <component id="46b2e" class="javax.swing.JLabel" binding="upperLimitLabale">
                 <constraints/>
                 <properties>
                   <text value="Upper limit:"/>
