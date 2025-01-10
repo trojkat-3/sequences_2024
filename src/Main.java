@@ -1,6 +1,8 @@
 import exceptions.CantDecomposeException;
 import exceptions.OutOfBoundsException;
 import gui.MainFrame;
+import printers.PrinterFile;
+import printers.PrinterStdOut;
 import sequences.*;
 
 import javax.swing.*;
@@ -15,8 +17,8 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        IntegerPrinter printerStdOut = new IntegerPrinter();
-        IntegerPrinter printerFile = new IntegerPrinter("integers.txt");
+        PrinterStdOut printerStdOut = new PrinterStdOut();
+        PrinterFile printerFile = new PrinterFile("integers.txt");
         //Integers
         Sequence integers = new Integers();
         printerStdOut.print(integers);
