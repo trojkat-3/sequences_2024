@@ -1,5 +1,7 @@
 package gui;
 
+import printers.Printer;
+import printers.PrinterDummy;
 import sequences.*;
 
 import javax.swing.*;
@@ -31,6 +33,7 @@ public class MainFrame extends JFrame {
     private JLabel upperLimitLabale;
 
     private Sequence sequence=null;
+    private Printer printer=new PrinterDummy();
 
     public MainFrame(){
         super();
@@ -40,8 +43,8 @@ public class MainFrame extends JFrame {
         selectButton.addActionListener(this::selectAction);
         changeButton.addActionListener(this::changeAction);
         resetButton.addActionListener(this::resetAction);
+        showElementsButton.addActionListener(this::showElementsAction);
         init();
-
     }
 
     private void lockSequenceChoice(boolean lock){
@@ -81,6 +84,15 @@ public class MainFrame extends JFrame {
         limitTextField.setColumns(6);
         decomposeTextField.setColumns(8);
         sumTextField.setColumns(8);
+    }
+
+    private void showElementsAction(ActionEvent e){
+        TextWindow dialog = new TextWindow();
+        dialog.pack();
+        dialog.setTitle("Sequence");
+        dialog.setSize(800,600);
+        dialog.setText(printer.print(sequence));
+        dialog.setVisible(true);
     }
 
     private void resetAction(ActionEvent e){
