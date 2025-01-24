@@ -1,6 +1,7 @@
 package gui;
 
 import exceptions.CantDecomposeException;
+import exceptions.OutOfBoundsException;
 import printers.Printer;
 import printers.PrinterDummy;
 import sequences.*;
@@ -45,6 +46,7 @@ public class MainFrame extends JFrame {
         selectButton.addActionListener(this::selectAction);
         changeButton.addActionListener(this::changeAction);
         decomposeButton.addActionListener(this::decomposeAction);
+        sumButton.addActionListener(this::sumAction);
         resetButton.addActionListener(this::resetAction);
         showElementsButton.addActionListener(this::showElementsAction);
         init();
@@ -105,6 +107,18 @@ public class MainFrame extends JFrame {
     private void resetAction(ActionEvent e){
         sequence=null;
         lockSequenceChoice(false);
+    }
+
+    private void sumAction(ActionEvent e){
+        Integer n=parseInt(sumTextField);
+        if (n!=null){
+            try {
+                int sum=sequence.getSum(n);
+                showDialog("Sum: "+sum, "Sum");
+            } catch (OutOfBoundsException ex){
+                showError(ex.getMessage());
+            }
+        }
     }
 
     private void decomposeAction(ActionEvent e){
