@@ -1,5 +1,6 @@
 package gui;
 
+import exceptions.CantDecomposeException;
 import printers.Printer;
 import printers.PrinterDummy;
 import sequences.*;
@@ -7,6 +8,7 @@ import sequences.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class MainFrame extends JFrame {
     private JPanel mainPanel;
@@ -42,6 +44,7 @@ public class MainFrame extends JFrame {
         creditsButton.addActionListener(this::creditsAction);
         selectButton.addActionListener(this::selectAction);
         changeButton.addActionListener(this::changeAction);
+        decomposeButton.addActionListener(this::decomposeAction);
         resetButton.addActionListener(this::resetAction);
         showElementsButton.addActionListener(this::showElementsAction);
         init();
@@ -87,11 +90,15 @@ public class MainFrame extends JFrame {
     }
 
     private void showElementsAction(ActionEvent e){
+        showDialog(printer.print(sequence), "Sequence");
+    }
+
+    private void showDialog(String str, String title){
         TextWindow dialog = new TextWindow();
         dialog.pack();
-        dialog.setTitle("Sequence");
+        dialog.setTitle(title);
         dialog.setSize(800,600);
-        dialog.setText(printer.print(sequence));
+        dialog.setText(str);
         dialog.setVisible(true);
     }
 
@@ -100,17 +107,35 @@ public class MainFrame extends JFrame {
         lockSequenceChoice(false);
     }
 
-    private void changeAction(ActionEvent e){
+    private void decomposeAction(ActionEvent e){
+        Integer n=parseInt(decomposeTextField);
+        if (n!=null){
+            try {
+                ArrayList<Integer> list=sequence.decompose(n);
+                showDialog(printer.printDecomposition(list), "Decomposition of "+n);
+            } catch (CantDecomposeException ex){
+                showError(ex.getMessage());
+            }
+        }
+    }
+
+    private Integer parseInt(JTextField tf) {
+        Integer ret=null;
         try {
-            int limit = Integer.parseInt(limitTextField.getText());
-            sequence.setMax(limit);
+            ret = Integer.parseInt(tf.getText());
         } catch (NumberFormatException ex){
             showError("Invalid number!");
         }
+        return ret;
+    }
+
+    private void changeAction(ActionEvent e){
+        Integer limit=parseInt(limitTextField);
+        if (limit!=null){
+            sequence.setMax(limit);
+        }
         limitTextField.setText("");
         lockSequenceChoice(true);
-
-        //limitLabel.setText(Integer.toString(sequence.getMax()));
     }
 
     private void selectAction(ActionEvent e){

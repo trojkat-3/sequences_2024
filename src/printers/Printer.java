@@ -31,6 +31,19 @@ abstract public class Printer {
         return out;
     }
 
+    public String printDecomposition(ArrayList<Integer> list){
+        int s=0;
+        String str="";
+        for (int a: list){
+            str+=a+"+";
+            s+=a;
+        }
+        str=str.substring(0,str.length()-1);
+        str=s+" = "+str;
+        output(str);
+        return str;
+    }
+
     private int getNumberOfDigits(int n) {
         int nd = 0;
         while (n > 0) {

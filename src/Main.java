@@ -48,6 +48,9 @@ public class Main {
 
         try {
             System.out.println(primes.decompose(1234));
+
+            printerStdOut.printDecomposition(squares.decompose(1234));
+
             System.out.println(squares.decompose(1234));
             System.out.println(primes.decompose(32));
         } catch (CantDecomposeException e) {
