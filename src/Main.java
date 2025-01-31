@@ -1,12 +1,11 @@
 import exceptions.CantDecomposeException;
 import exceptions.OutOfBoundsException;
 import gui.MainFrame;
-import printers.PrinterFile;
+import printers.PrinterFileLocal;
 import printers.PrinterStdOut;
 import sequences.*;
 
 import javax.swing.*;
-import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,8 +16,10 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
+        // Obsolete - to be deleted
+
         PrinterStdOut printerStdOut = new PrinterStdOut();
-        PrinterFile printerFile = new PrinterFile("integers.txt");
+        PrinterFileLocal printerFile = new PrinterFileLocal("integers.txt");
         //Integers
         Sequence integers = new Integers();
         printerStdOut.print(integers);

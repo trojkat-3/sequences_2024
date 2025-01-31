@@ -4,11 +4,14 @@ import exceptions.CantDecomposeException;
 import exceptions.OutOfBoundsException;
 import printers.Printer;
 import printers.PrinterDummy;
+import printers.PrinterFile;
+import printers.PrinterFileLocal;
 import sequences.*;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 
 public class MainFrame extends JFrame {
@@ -49,6 +52,7 @@ public class MainFrame extends JFrame {
         sumButton.addActionListener(this::sumAction);
         resetButton.addActionListener(this::resetAction);
         showElementsButton.addActionListener(this::showElementsAction);
+        saveToFileButton.addActionListener(this::saveToFile);
         init();
     }
 
@@ -89,6 +93,22 @@ public class MainFrame extends JFrame {
         limitTextField.setColumns(6);
         decomposeTextField.setColumns(8);
         sumTextField.setColumns(8);
+    }
+
+    private void saveToFile(ActionEvent e){
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "Text files", "txt");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(this);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            File file=chooser.getSelectedFile();
+            Printer printerFile=new PrinterFile(file);
+            printerFile.print(sequence);
+            showInfo("Sequence saved to file: "+file.getName(),"Info");
+        }
+
+
     }
 
     private void showElementsAction(ActionEvent e){
@@ -162,9 +182,12 @@ public class MainFrame extends JFrame {
     }
 
     private void creditsAction(ActionEvent e){
+        showInfo("Developed by MS", "Credits");
+    }
+
+    private void showInfo(String msg, String title){
         JOptionPane.showMessageDialog(this,
-                "Developed by MS" , "Credits",
-                JOptionPane.INFORMATION_MESSAGE);
+                msg,title, JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void showError(String msg){

@@ -1,28 +1,27 @@
 package printers;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class PrinterFile extends Printer {
-    private static final String OUTPUT_PATH = "output/";
-    private String fileName;
+    private File file;
 
-    public PrinterFile(String fileName) {
-        this.fileName = fileName;
-        try (FileWriter fr = new FileWriter(OUTPUT_PATH + fileName)) {
+    public PrinterFile(File file){
+        this.file=file;
+        try (FileWriter fr = new FileWriter(file)) {
             fr.write("");
         } catch (IOException ex) {
-            System.out.println("Can't write to file: " + fileName);
+            System.out.println("Can't write to file: " + file.getName());
         }
     }
 
     @Override
     void output(String str) {
-        //String fName = "output/integers.txt";
-        try (FileWriter fr = new FileWriter(OUTPUT_PATH + fileName, true)) {
+        try (FileWriter fr = new FileWriter(file, true)) {
             fr.append(str);
         } catch (IOException ex) {
-            System.out.println("Can't create file: " + fileName);
+            System.out.println("Can't create file: " + file.getName());
         }
     }
 }
